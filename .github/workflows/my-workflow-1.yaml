@@ -28,7 +28,7 @@ jobs:
     steps:
     - name: build
       run: |
-        vite build
+        npm run build
 
   deploy:
     needs: build
