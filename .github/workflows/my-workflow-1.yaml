@@ -8,27 +8,37 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
       - name: Dependencies
         run: |
           npm ci
-
       - name: run lint
         run: |
           npm run lint
 
-      - name: test 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Dependencies
         run: |
-          npm run test
-      
+          npm ci
+      - name: run test
+        run: |
+          npm run test      
 
   build: 
     needs: lint
     runs-on: ubuntu-latest
     steps:
-    - name: build
-      run: |
-        npm run build
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Dependencies
+        run: |
+          npm ci
+      - name: run build
+        run: |
+          npm run build
 
   deploy:
     needs: build
