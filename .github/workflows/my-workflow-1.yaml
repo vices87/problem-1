@@ -11,7 +11,7 @@ jobs:
 
       - name: Dependencies
         run: |
-          npm install
+          npm ci
 
       - name: run lint
         run: |
