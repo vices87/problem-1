@@ -1,0 +1,47 @@
+name: test-lint-deploy
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Dependencies
+        run: |
+          npm install
+
+      - name: run lint
+        run: |
+          eslint --ext .jsx --fix src
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps: 
+    - name: test 
+      run: |
+        vitest run
+
+  build: 
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: build
+      run: |
+        vite build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: |
+          vite preview
+
+        
+      
+
+
