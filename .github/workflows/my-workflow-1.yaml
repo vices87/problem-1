@@ -23,7 +23,7 @@ jobs:
     steps: 
     - name: test 
       run: |
-        vitest run
+        npm run test
 
   build: 
     needs: test
