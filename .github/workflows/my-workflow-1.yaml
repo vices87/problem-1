@@ -15,7 +15,7 @@ jobs:
 
       - name: run lint
         run: |
-          eslint --ext .jsx --fix src
+          npm run lint
 
   test:
     needs: lint
